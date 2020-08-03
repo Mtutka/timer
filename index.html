@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <style>
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			background-color: black;
+			font-family: arial;
+			color: white;
+			align-items: center;
+			height: 100vh;
+		}
+
+		h1 {
+			font-size: 25px;
+		}
+
+		p {
+			font-family: monospace;
+			font-size: 22px;
+		}
+        span {
+            padding-right: 10px;
+        }
+	</style>
+</head>
+
+<body>
+
+	<p>Bisłystok za:</p>  
+	<h1>
+        D: <span class="d">.</span>
+        H: <span class="h">.</span>
+        M: <span class="m">.</span>
+		S: <span class="s">.</span>
+	</h1>
+
+
+
+    <script>
+        
+const spanD = document.querySelector('span.d');
+const spanH = document.querySelector('span.h');
+const spanM = document.querySelector('span.m');
+const spanS = document.querySelector('span.s');
+      const nowTime = new Date().getTime();
+      const endTime = new Date('2020-09-05 01:30:00').getTime();
+
+      const days = Math.floor(
+        endTime / (1000 * 60 * 60 * 24) - nowTime / (1000 * 60 * 60 * 24)
+      );
+      const hours = Math.floor(
+        (endTime / (1000 * 60 * 60) - nowTime / (1000 * 60 * 60)) % 24
+      );
+      const minutes = Math.floor(
+        (endTime / (1000 * 60) - nowTime / (1000 * 60)) % 60
+      );
+
+      const seconds = Math.floor((endTime / 1000 - nowTime / 1000) % 60);
+      setInterval(() => {
+        const nowTime = new Date().getTime();
+        const time = Math.floor((endTime - nowTime) / 1000);
+        const days = Math.floor(
+          endTime / (1000 * 60 * 60 * 24) - nowTime / (1000 * 60 * 60 * 24)
+        );
+        let hours = Math.floor(
+          (endTime / (1000 * 60 * 60) - nowTime / (1000 * 60 * 60)) % 24
+        );
+
+        hours = hours < 10 ? `0${hours}` : hours;
+        let minutes = Math.floor(
+          (endTime / (1000 * 60) - nowTime / (1000 * 60)) % 60
+        );
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        let seconds = Math.floor((endTime / 1000 - nowTime / 1000) % 60);
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
+        spanD.textContent = days;
+ spanH.textContent = hours;
+ spanM.textContent = minutes;
+ spanS.textContent = seconds;
+      }, 1000);
+    </script>
+  </body>
+</html>
